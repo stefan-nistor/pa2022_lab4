@@ -1,4 +1,6 @@
 import java.util.AbstractMap;
+import java.util.List;
+import java.util.Objects;
 
 public class Street implements Comparable<Street>{
     private String name;
@@ -42,5 +44,27 @@ public class Street implements Comparable<Street>{
     @Override
     public int compareTo(Street o) {
         return this.length.compareTo(o.length);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Street street = (Street) o;
+        return Objects.equals(name, street.name) && Objects.equals(length, street.length) && Objects.equals(intersectionPair, street.intersectionPair);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, length, intersectionPair);
+    }
+
+    @Override
+    public String toString() {
+        return "Street{" +
+                "name='" + name + '\'' +
+                ", length=" + length +
+                ", intersectionPair=" + intersectionPair +
+                '}';
     }
 }
